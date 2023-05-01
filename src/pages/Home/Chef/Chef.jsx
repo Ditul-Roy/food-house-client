@@ -7,6 +7,7 @@ const Chef = () => {
 
     return (
         <div>
+            <h1></h1>
             <h1>tota chef: {chefs.length}</h1>
             <div className='grid lg:grid-cols-3'>
                 {
