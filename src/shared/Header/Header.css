@@ -1,0 +1,9 @@
+.header{
+    background-image: url('../../assets/wholesomeyum-Chef-Salad-Recipe-16.jpg');
+    margin: 10px;
+    height: 600px;
+    width: 100%;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    border-radius: 8px;
+}
