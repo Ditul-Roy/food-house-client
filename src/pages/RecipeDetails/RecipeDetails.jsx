@@ -4,19 +4,19 @@ import { useLoaderData } from 'react-router-dom';
 import RecipeCart from '../../shared/RecipeCart/RecipeCart';
 
 const RecipeDetails = () => {
+
     const [recipes, setRecipes] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/recipes')
+        fetch('https://bangladeshi-chef-recipe-server-ditul-roy.vercel.app/recipes')
         .then(res=> res.json())
         .then(data =>setRecipes(data))
-    },[])
+    },[setRecipes])
 
     const recipe = useLoaderData();
     const { name, image_url, like, details, num_recipes, years_of_experience, recipe_id } = recipe;
     // console.log(recipe);
 
     const myrecipes = recipes.filter(r=>r.recipe_id === recipe_id);
-    // console.log(myrecipes);
 
     return (
         <div className='lg:mt-40'>
@@ -33,7 +33,7 @@ const RecipeDetails = () => {
             <div className='grid lg:grid-cols-3'>
                 {
                     myrecipes.map(recipe=> <RecipeCart 
-                    key={recipe.recipe_id}
+                    key={recipe.id}
                     recipe={recipe}
                     ></RecipeCart>)
                 }

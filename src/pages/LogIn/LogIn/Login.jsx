@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const {loggedInUserWithEmail} = useContext(UserContext);
     const [error, setError] = useState(null);
+    const navigate = useNavigate()
+    const location = useLocation();
+    console.log(location);
+    const from = location?.state?.from?.pathname || '/chef'
 
     const handleLoggedIn = (event) => {
         event.preventDefault();
@@ -31,6 +35,7 @@ const Login = () => {
                 'success'
               );
               form.reset();
+              navigate(from)
         }) 
         .catch(error => {
             setError(error);

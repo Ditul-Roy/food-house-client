@@ -1,7 +1,6 @@
 import React from 'react';
 
 const RecipeCart = ({ recipe }) => {
-    console.log(recipe);
     const { image_url, recipe_name, ingredients, rating, cooking_method } = recipe;
     return (
         <div className="card Lg:w-96 bg-base-100 shadow-xl m-4">>

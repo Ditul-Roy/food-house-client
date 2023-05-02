@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form, Link } from 'react-router-dom';
 import { UserContext } from '../../../provider/AuthContextProvider';
 import Swal from 'sweetalert2';
+import { updateProfile } from 'firebase/auth';
 
 const SignUp = () => {
     const { createUserWithEmail } = useContext(UserContext);
@@ -10,6 +11,8 @@ const SignUp = () => {
     const handleSignUp = (event) => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
+        const photourl = form.photo.value; 
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
@@ -51,10 +54,21 @@ const SignUp = () => {
                     'success'
                 );
                 form.reset();
+                updateUserNamePhoto(result.user, name, photourl)
             })
             .catch(error => {
                 console.log(error);
             })
+    }
+    const updateUserNamePhoto = (user, name, photourl) => {
+        updateProfile(user, {
+            displayName: name,
+            photoURL: photourl
+        })
+        .then(()=>{
+            alert('succesfully update')
+        })
+        .catch(error=>console.log(error))
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -68,7 +82,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="name" className="input input-bordered" />
+                            <input type="text" placeholder="name" name="name" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">

@@ -6,6 +6,7 @@ import RecipeDetails from "../pages/RecipeDetails/RecipeDetails";
 import Login from "../pages/LogIn/LogIn/Login";
 import SignUp from "../pages/LogIn/SignUp/SignUp";
 import LoginLayout from "../layout/LoginLayout";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             {
                 path: '/chef',
                 element: <Chef></Chef>,
-                loader: () => fetch('http://localhost:5000/chef')
+                loader: () => fetch('https://bangladeshi-chef-recipe-server.vercel.app/chef')
             }
         ]
     },
@@ -43,8 +44,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: ':id',
-                element: <RecipeDetails></RecipeDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/chef/${params.id}`)
+                element: <PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>,
+                loader: ({params}) => fetch(`https://bangladeshi-chef-recipe-server.vercel.app/chef/${params.id}`),
             }
         ]
     },

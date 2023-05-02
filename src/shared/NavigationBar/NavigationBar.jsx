@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../provider/AuthContextProvider';
 
 const NavigationBar = () => {
-    const {user} = useContext(UserContext)
+    const {user, logOut } = useContext(UserContext);
+    const handleSignOut = () =>{
+        logOut();
+    }
     return (
         <div>
             <div className="navbar w-full bg-amber-50">
@@ -12,12 +15,15 @@ const NavigationBar = () => {
                 </div>
                 <div className="navbar-center text-slate-600 lg:flex">
                     <Link to="/chef" className='text-wite text-xl me-8'>Home</Link>
-                    <Link className='text-wite text-xl me-8'>login</Link>
                     <Link className='text-wite text-xl me-8'>Blog</Link>
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <Link className='btn btn-warning'>SignOut</Link> : <Link to="/login" className='btn btn-warning'>Log in</Link>
+                        user ? <>
+                            <img className='h-12 w-12 rounded' title={user.displayName} src={user.photoURL} alt="" />
+                            <Link onClick={handleSignOut} className='btn btn-warning'>SignOut</Link>
+                        </>
+                         : <Link to="/login" className='btn btn-warning'>Log in</Link>
                     }
                 </div>
             </div>
