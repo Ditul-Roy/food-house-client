@@ -1,9 +1,8 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
-import Home from "../pages/Home/Home/Home";
 import Chef from "../pages/Home/Chef/Chef";
 import RecipeLayout from "../layout/RecipeLayout";
-import RecipeDetails from "../pages/Home/RecipeDetails/RecipeDetails";
+import RecipeDetails from "../pages/RecipeDetails/RecipeDetails";
 
 const router = createBrowserRouter([
     {
