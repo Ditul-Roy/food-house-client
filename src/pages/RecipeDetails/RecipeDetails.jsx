@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
+import RecipeCart from '../../shared/RecipeCart/RecipeCart';
 
 const RecipeDetails = () => {
     const [recipes, setRecipes] = useState([]);
@@ -14,8 +15,8 @@ const RecipeDetails = () => {
     const { name, image_url, like, details, num_recipes, years_of_experience, recipe_id } = recipe;
     // console.log(recipe);
 
-    const myrecipe = recipes.filter(r=>r.recipe_id === recipe_id);
-    console.log(myrecipe);
+    const myrecipes = recipes.filter(r=>r.recipe_id === recipe_id);
+    // console.log(myrecipes);
 
     return (
         <div className='lg:mt-40'>
@@ -29,8 +30,13 @@ const RecipeDetails = () => {
                     <p><FaHeart></FaHeart> {like}</p>
                 </div>
             </div>
-            <div>
-            
+            <div className='grid lg:grid-cols-3'>
+                {
+                    myrecipes.map(recipe=> <RecipeCart 
+                    key={recipe.recipe_id}
+                    recipe={recipe}
+                    ></RecipeCart>)
+                }
             </div>
         </div>
     );
