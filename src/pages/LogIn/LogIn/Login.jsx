@@ -1,9 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Form, Link } from 'react-router-dom';
+import { UserContext } from '../../../provider/AuthContextProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+    const {loggedInUserWithEmail} = useContext(UserContext);
+    const [error, setError] = useState(null);
+
+    const handleLoggedIn = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        if(!email, !password){
+            Swal.fire({
+                title: 'Error!',
+                text: 'please fulfil to the all input field',
+                icon: 'error',
+                confirmButtonText: 'Cool',
+              })
+        }
+
+        loggedInUserWithEmail(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            Swal.fire(
+                'Good job!',
+                'wow ! succesfully log in !',
+                'success'
+              );
+              form.reset();
+        }) 
+        .catch(error => {
+            setError(error);
+        })
+    }
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <Form onSubmit={handleLoggedIn} className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center">
                     <h1 className="text-5xl font-bold">Login now!</h1>
@@ -29,7 +63,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Form>
     );
 };
 
