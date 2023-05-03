@@ -10,7 +10,7 @@ const RecipeDetails = () => {
         fetch('https://bangladeshi-chef-recipe-server-ditul-roy.vercel.app/recipes')
         .then(res=> res.json())
         .then(data =>setRecipes(data))
-    },[setRecipes])
+    },[])
 
     const recipe = useLoaderData();
     const { name, image_url, like, details, num_recipes, years_of_experience, recipe_id } = recipe;

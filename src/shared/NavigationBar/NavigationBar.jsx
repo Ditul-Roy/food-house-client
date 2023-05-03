@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../provider/AuthContextProvider';
 
 const NavigationBar = () => {
@@ -7,7 +7,7 @@ const NavigationBar = () => {
     const navigate = useNavigate()
     const handleSignOut = () =>{
         logOut();
-        navigate('/chef')
+        <Navigate to="/chef"></Navigate>
     }
     return (
         <div>
@@ -23,7 +23,7 @@ const NavigationBar = () => {
                     {
                         user ? <>
                             <img className='h-12 w-12 rounded' title={user.displayName} src={user.photoURL} alt="" />
-                            <Link onClick={handleSignOut} className='btn btn-warning'>SignOut</Link>
+                            <Link onClick={handleSignOut} navigate className='btn btn-warning'>SignOut</Link>
                         </>
                          : <Link to="/login" className='btn btn-warning'>Log in</Link>
                     }

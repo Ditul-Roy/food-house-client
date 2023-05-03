@@ -8,6 +8,7 @@ import SignUp from "../pages/LogIn/SignUp/SignUp";
 import LoginLayout from "../layout/LoginLayout";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Services from "../pages/Home/Services/Services";
 
 const router = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
             {
                 path: "signup",
                 element: <SignUp></SignUp>
-            }
+            },
         ]
     },
     {
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
                 path: '/chef',
                 element: <Chef></Chef>,
                 loader: () => fetch('https://bangladeshi-chef-recipe-server.vercel.app/chef')
+            },
+            {
+                path: '/service',
+                element: <Services></Services>
             }
+          
         ]
     },
     {
