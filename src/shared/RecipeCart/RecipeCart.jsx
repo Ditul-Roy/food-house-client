@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const RecipeCart = ({ recipe }) => {
     const { image_url, recipe_name, ingredients, rating, cooking_method } = recipe;
@@ -12,7 +14,11 @@ const RecipeCart = ({ recipe }) => {
     return (
         <div className="card Lg:w-96 bg-base-100 shadow-xl m-4">
             <figure className="px-10 pt-10">
-                <img src={image_url} alt="" className="rounded-xl h-96 w-80" />
+                <LazyLoadImage 
+                src={image_url} 
+                alt="" 
+                className="rounded-xl h-96 w-80"
+                placeholderSrc={image_url} />
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title text-2xl text-amber-600">{recipe_name}</h2>

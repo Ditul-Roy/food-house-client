@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../provider/AuthContextProvider';
 import { FaList, FaRegWindowClose } from 'react-icons/fa';
 
@@ -17,7 +17,7 @@ const NavigationBar = () => {
         <div>
             <div className="navbar w-full bg-amber-50">
                 <div className="navbar-start">
-                    <Link to='/chef' className="btn btn-ghost normal-case text-2xl ">Food House</Link>
+                    <NavLink to='/chef' className='btn btn-ghost text-2xl'>Food House<img className='h-8 w-8' src={'https://i.ibb.co/PW6s02Z/dribbbb.jpg'} alt="" /></NavLink>
                 </div>
                 <div onClick={() => setOpen(!open)} className=' lg:hidden ms-32'>
                     <span>
@@ -27,16 +27,16 @@ const NavigationBar = () => {
                  </div>   
                     <ul className={`px-1 lg:flex justify-between absolute lg:static duration-500 ${open ? 'top-20 ' : '-top-36'}`}>
                         <div className="navbar-center text-slate-600 lg:flex">
-                            <Link to="/chef" className='text-wite text-xl lg:me-8'>Home</Link>
-                            <Link to="/blog" className='text-wite text-xl lg:me-8'>Blog</Link>
+                            <NavLink to="/chef" className={({ isActive }) => (isActive ? 'btn btn-danger me-4' : ' text-xl lg:me-8')} >Home</NavLink>
+                            <NavLink to="/blog" className={({ isActive }) => (isActive ? 'btn btn-danger me-4' : ' text-xl lg:me-8')} >Blog</NavLink>
                         </div>
-                        <div className="navbar-end lg:flex sm:me-32">
+                        <div className="navbar-end lg:flex lg:ms-60">
                             {
                                 user ? <>
-                                    <img className='h-12 w-12 rounded' title={user.displayName} src={user.photoURL} alt="" />
-                                    <Link onClick={handleSignOut} navigate className='btn btn-warning'>SignOut</Link>
+                                    <img className='h-12 w-12 rounded' title={user.displayName ? user.displayName : ''} src={user.photoURL} alt="" />
+                                    <NavLink onClick={handleSignOut} navigate className={({ isActive }) => (isActive ? 'text-blue-600 btn btn-warning' : 'btn btn-warning')} >SignOut</NavLink>
                                 </>
-                                    : <Link to="/login" className='btn btn-warning'>Log in</Link>
+                                    : <NavLink to="/login" className={({ isActive }) => (isActive ? ' btn btn-danger' : 'btn btn-warning')}  >Log in</NavLink>
                             }
                         </div>
                     </ul>

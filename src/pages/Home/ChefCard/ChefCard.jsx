@@ -1,6 +1,8 @@
 import React from 'react';
 import {  FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ChefCard = ({ chef }) => {
     const {_id, name, image_url, years_of_experience, num_recipes, like } = chef;
@@ -8,7 +10,12 @@ const ChefCard = ({ chef }) => {
         <div className='m-4'>
             <div className="card w-full bg-base-100 shadow-xl">
                 <figure className="px-10 pt-10">
-                    <img src={image_url} alt="" className="rounded-xl h-60 w-full" />
+                    <LazyLoadImage 
+                    effect='blur'
+                    src={image_url} 
+                    alt="" 
+                    className="rounded-xl h-96 w-96"
+                    placeholderSrc={image_url} />
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{name}</h2>
