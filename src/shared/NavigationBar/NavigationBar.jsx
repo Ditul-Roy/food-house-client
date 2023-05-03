@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../provider/AuthContextProvider';
 
 const NavigationBar = () => {
     const {user, logOut } = useContext(UserContext);
+    const navigate = useNavigate()
     const handleSignOut = () =>{
         logOut();
+        navigate('/chef')
     }
     return (
         <div>

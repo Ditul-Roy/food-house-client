@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../../provider/AuthContextProvider';
 import Swal from 'sweetalert2';
+import { FaGithubAlt, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
-    const {loggedInUserWithEmail} = useContext(UserContext);
+    const { loggedInUserWithEmail } = useContext(UserContext);
     const [error, setError] = useState(null);
     const navigate = useNavigate()
     const location = useLocation();
@@ -16,30 +17,30 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        if(!email, !password){
+        if (!email, !password) {
             Swal.fire({
                 title: 'Error!',
                 text: 'please fulfil to the all input field',
                 icon: 'error',
                 confirmButtonText: 'Cool',
-              })
+            })
         }
 
         loggedInUserWithEmail(email, password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            Swal.fire(
-                'Good job!',
-                'wow ! succesfully log in !',
-                'success'
-              );
-              form.reset();
-              navigate(from)
-        }) 
-        .catch(error => {
-            setError(error);
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                Swal.fire(
+                    'Good job!',
+                    'wow ! succesfully log in !',
+                    'success'
+                );
+                form.reset();
+                navigate(from)
+            })
+            .catch(error => {
+                setError(error);
+            })
     }
     return (
         <Form onSubmit={handleLoggedIn} className="hero min-h-screen bg-base-200">
@@ -65,6 +66,10 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                             <p><small>Don`t have an account! please <Link to='/signup'>SignUp</Link></small></p>
                         </div>
+                        <p className='text-center'>or</p>
+                        <hr />
+                        <p className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
+                        <p className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
                     </div>
                 </div>
             </div>

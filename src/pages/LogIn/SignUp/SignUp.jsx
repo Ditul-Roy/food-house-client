@@ -3,6 +3,9 @@ import { Form, Link } from 'react-router-dom';
 import { UserContext } from '../../../provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaGithubAlt, FaGoogle } from 'react-icons/fa';
 
 const SignUp = () => {
     const { createUserWithEmail } = useContext(UserContext);
@@ -12,7 +15,7 @@ const SignUp = () => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
-        const photourl = form.photo.value; 
+        const photourl = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
@@ -35,7 +38,7 @@ const SignUp = () => {
                 confirmButtonText: 'Cool',
             })
         }
-        else if(password.length < 6){
+        else if (password.length < 6) {
             setError('please provide at least 6 currecter')
             Swal.fire({
                 title: 'Oooops!',
@@ -65,10 +68,10 @@ const SignUp = () => {
             displayName: name,
             photoURL: photourl
         })
-        .then(()=>{
-            alert('succesfully update')
-        })
-        .catch(error=>console.log(error))
+            .then(() => {
+                toast("Wow updated successfylly!")
+            })
+            .catch(error => console.log(error))
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -107,6 +110,10 @@ const SignUp = () => {
                             <button className="btn btn-warning">SignUp</button>
                             <p><small>Already have an account! please <Link to='/login'>login</Link></small></p>
                         </div>
+                        <p className='text-center'>or</p>
+                        <hr />
+                        <p className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
+                        <p className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
                     </div>
                 </Form>
             </div>
