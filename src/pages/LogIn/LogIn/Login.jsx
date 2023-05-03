@@ -5,11 +5,10 @@ import Swal from 'sweetalert2';
 import { FaGithubAlt, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
-    const { loggedInUserWithEmail } = useContext(UserContext);
+    const { loggedInUserWithEmail, userWithGoogle } = useContext(UserContext);
     const [error, setError] = useState(null);
     const navigate = useNavigate()
     const location = useLocation();
-    console.log(location);
     const from = location?.state?.from?.pathname || '/chef'
 
     const handleLoggedIn = (event) => {
@@ -39,8 +38,15 @@ const Login = () => {
                 navigate(from)
             })
             .catch(error => {
-                setError(error);
+                setError(error.message);
             })
+    }
+    const hangleLoginGoogle = () => {
+        userWithGoogle()
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => setError(error.message))
     }
     return (
         <Form onSubmit={handleLoggedIn} className="hero min-h-screen bg-base-200">
@@ -61,6 +67,7 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" name='password' className="input input-bordered" />
+                            <p><small>{error}</small></p>
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
@@ -68,7 +75,7 @@ const Login = () => {
                         </div>
                         <p className='text-center'>or</p>
                         <hr />
-                        <p className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
+                        <p onClick={hangleLoginGoogle} className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
                         <p className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
                     </div>
                 </div>

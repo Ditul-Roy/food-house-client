@@ -3,12 +3,12 @@ import { Form, Link } from 'react-router-dom';
 import { UserContext } from '../../../provider/AuthContextProvider';
 import Swal from 'sweetalert2';
 import { updateProfile } from 'firebase/auth';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaGithubAlt, FaGoogle } from 'react-icons/fa';
 
 const SignUp = () => {
-    const { createUserWithEmail } = useContext(UserContext);
+    const { createUserWithEmail, userWithGoogle } = useContext(UserContext);
     const [error, setError] = useState(null);
 
     const handleSignUp = (event) => {
@@ -19,33 +19,34 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        setError('');
 
         if (!/(?=.*[A-Z])/.test(password)) {
-            setError('please provide an upper case')
             Swal.fire({
                 title: 'Oooops!',
                 text: 'please provide an upper case',
                 icon: 'error',
                 confirmButtonText: 'Cool'
             })
+            return;
         }
         else if (!/(?=.*[!#$%&? "])/.test(password)) {
-            setError('please provide a special churrecter')
             Swal.fire({
                 title: 'Oooops!',
                 text: 'please provide a special churrecter',
                 icon: 'error',
                 confirmButtonText: 'Cool',
             })
+            return;
         }
         else if (password.length < 6) {
-            setError('please provide at least 6 currecter')
             Swal.fire({
                 title: 'Oooops!',
                 text: 'please provide at least 6 churrecter',
                 icon: 'error',
                 confirmButtonText: 'Cool',
             })
+            return;
         }
         createUserWithEmail(email, password)
             .then(result => {
@@ -57,10 +58,11 @@ const SignUp = () => {
                     'success'
                 );
                 form.reset();
+                setError('')
                 updateUserNamePhoto(result.user, name, photourl)
             })
             .catch(error => {
-                console.log(error);
+                setError(error.message);
             })
     }
     const updateUserNamePhoto = (user, name, photourl) => {
@@ -71,7 +73,15 @@ const SignUp = () => {
             .then(() => {
                 toast("Wow updated successfylly!")
             })
-            .catch(error => console.log(error))
+            .catch(error => setError(error.message))
+    }
+
+    const hangleSignUpGoogle = () => {
+        userWithGoogle()
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => setError(error.message))
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -112,11 +122,12 @@ const SignUp = () => {
                         </div>
                         <p className='text-center'>or</p>
                         <hr />
-                        <p className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
+                        <p onClick={hangleSignUpGoogle} className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
                         <p className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
                     </div>
                 </Form>
             </div>
+            <ToastContainer />
         </div>
     );
 };

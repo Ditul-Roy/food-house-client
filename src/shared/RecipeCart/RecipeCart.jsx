@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const RecipeCart = ({ recipe }) => {
     const { image_url, recipe_name, ingredients, rating, cooking_method } = recipe;
+    const [isDisabled, setIsDisabled] = useState(true);
+
+    const handleFavouritebtn = () => {
+        toast('Woww you are add this recipe');
+        setIsDisabled();
+    }
     return (
         <div className="card Lg:w-96 bg-base-100 shadow-xl m-4">
             <figure className="px-10 pt-10">
@@ -13,7 +20,7 @@ const RecipeCart = ({ recipe }) => {
                 <div>
                     <span className='text-xl'>Ingradients: </span>
                     {
-                        ingredients.map((ingredient, index) => <ul><li>{ingredient}</li></ul>)
+                        ingredients.map((ingredient, index) => <ul key={index}><li>{ingredient}</li></ul>)
                     }
                 </div>
                 <div className='flex text-green-800 my-8'>
@@ -21,9 +28,10 @@ const RecipeCart = ({ recipe }) => {
                     <p><small>{rating.reviews} reviews</small></p>
                 </div>
                 <div className="card-actions">
-                    <button className="btn btn-warning">favorite</button>
+                    <button onClick={handleFavouritebtn} disabled={!isDisabled} className="btn btn-warning">favorite</button>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

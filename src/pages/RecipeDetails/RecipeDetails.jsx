@@ -32,8 +32,8 @@ const RecipeDetails = () => {
             </div>
             <div className='grid lg:grid-cols-3'>
                 {
-                    myrecipes.map(recipe=> <RecipeCart 
-                    key={recipe.id}
+                    myrecipes.map((recipe, index)=> <RecipeCart 
+                    key={index}
                     recipe={recipe}
                     ></RecipeCart>)
                 }

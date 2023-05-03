@@ -8,6 +8,13 @@ const Footer = () => {
                 <div>
                     <p className='text-xl text-center'>food house</p>
                     <p className='text-slate-400 text-center'>we are present healthy and best food for you.</p>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input type="email" placeholder="email" name="email" className="input input-bordered" />
+                    </div>
+                    <button className="btn btn-warning text-white">submit</button>
                 </div>
                 <div>
                     <h1 className='text-xl text-center'>Our facility</h1>
