@@ -9,6 +9,7 @@ import LoginLayout from "../layout/LoginLayout";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Services from "../pages/Home/Services/Services";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
                 path: "signup",
                 element: <SignUp></SignUp>
             },
+            {
+                path: "blog",
+                element: <Blog></Blog>
+            }
         ]
     },
     {

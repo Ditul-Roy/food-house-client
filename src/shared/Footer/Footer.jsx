@@ -14,7 +14,7 @@ const Footer = () => {
                         </label>
                         <input type="email" placeholder="email" name="email" className="input input-bordered" />
                     </div>
-                    <button className="btn btn-warning text-white">submit</button>
+                    <button className=" mt-4 ms-4 text-slate-400 text-white">submit</button>
                 </div>
                 <div>
                     <h1 className='text-xl text-center'>Our facility</h1>

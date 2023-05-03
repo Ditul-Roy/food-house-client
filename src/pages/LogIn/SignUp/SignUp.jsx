@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaGithubAlt, FaGoogle } from 'react-icons/fa';
 
 const SignUp = () => {
-    const { createUserWithEmail, userWithGoogle } = useContext(UserContext);
+    const { createUserWithEmail, userWithGoogle, userWithGithub } = useContext(UserContext);
     const [error, setError] = useState(null);
 
     const handleSignUp = (event) => {
@@ -79,7 +79,25 @@ const SignUp = () => {
     const hangleSignUpGoogle = () => {
         userWithGoogle()
         .then(result => {
-            console.log(result);
+            console.log(result.user);
+            Swal.fire(
+                'Good job!',
+                'wow ! succesfully sign up !',
+                'success'
+            );
+        })
+        .catch(error => setError(error.message))
+    }
+
+    const handleSignUpGithub = () =>{
+        userWithGithub()
+        .then(result => {
+            console.log(result.user);
+            Swal.fire(
+                'Good job!',
+                'wow ! succesfully sign up !',
+                'success'
+            );
         })
         .catch(error => setError(error.message))
     }
@@ -123,7 +141,7 @@ const SignUp = () => {
                         <p className='text-center'>or</p>
                         <hr />
                         <p onClick={hangleSignUpGoogle} className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
-                        <p className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
+                        <p onClick={handleSignUpGithub} className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
                     </div>
                 </Form>
             </div>

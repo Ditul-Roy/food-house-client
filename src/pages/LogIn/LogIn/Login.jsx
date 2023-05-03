@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { FaGithubAlt, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
-    const { loggedInUserWithEmail, userWithGoogle } = useContext(UserContext);
+    const { loggedInUserWithEmail, userWithGoogle, userWithGithub } = useContext(UserContext);
     const [error, setError] = useState(null);
     const navigate = useNavigate()
     const location = useLocation();
@@ -48,6 +48,20 @@ const Login = () => {
         })
         .catch(error => setError(error.message))
     }
+
+    const handleLoginGithub = () =>{
+        userWithGithub()
+        .then(result => {
+            console.log(result.user);
+            Swal.fire(
+                'Good job!',
+                'wow ! succesfully sign up !',
+                'success'
+            );
+        })
+        .catch(error => setError(error.message))
+    }
+
     return (
         <Form onSubmit={handleLoggedIn} className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
@@ -76,7 +90,7 @@ const Login = () => {
                         <p className='text-center'>or</p>
                         <hr />
                         <p onClick={hangleLoginGoogle} className='btn btn-warning'><FaGoogle></FaGoogle>google</p>
-                        <p className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
+                        <p onClick={handleLoginGithub} className='btn btn-warning'><FaGithubAlt></FaGithubAlt>github</p>
                     </div>
                 </div>
             </div>
