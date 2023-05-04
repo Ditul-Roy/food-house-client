@@ -11,7 +11,7 @@ const Chef = () => {
         <div>
             
             <div className='text-center my-10'>
-                <h1 className='text-3xl text bold text-amber-800'>Our chef</h1>
+                <h1 className='text-3xl text bold text-white'>Our chef</h1>
                 <p className='text-xl text-yellow-400'>they are serving you to eat clean food.</p>
             </div>
             <div className='grid lg:grid-cols-3'>

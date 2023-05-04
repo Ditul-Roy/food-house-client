@@ -18,7 +18,7 @@ const Services = () => {
     }
     return (
         <div>
-            <h3 className='text-3xl text bold text-amber-800 text-center my-10'>Our services</h3>
+            <h3 className='text-3xl text bold text-white text-center my-10'>Our services</h3>
             <div className='grid lg:grid-cols-3'>
                 {
                     services?.slice(0, 15)?.map((service, index) => <ServiceCart
@@ -28,7 +28,7 @@ const Services = () => {
                 }
             </div>
             <div className='flex justify-center my-10'>
-                <button onClick={()=>hanleSeeMore(services)} className='btn btn-warning'>see more</button>
+                <button onClick={()=>hanleSeeMore(services)} className='btn btn-warning text-white'>see more</button>
             </div>
         </div>
     );

@@ -8,25 +8,25 @@ const ChefCard = ({ chef }) => {
     const {_id, name, image_url, years_of_experience, num_recipes, like } = chef;
     return (
         <div className='m-4'>
-            <div className="card w-full bg-base-100 shadow-xl">
+            <div className="card w-full bg-slate-600 shadow-xl">
                 <figure className="px-10 pt-10">
                     <LazyLoadImage 
                     effect='blur'
                     src={image_url} 
                     alt="" 
-                    className="rounded-xl h-96 w-96"
+                    className="rounded-xl h-96 w-96 "
                     placeholderSrc={image_url} />
                 </figure>
                 <div className="card-body items-center text-center">
-                    <h2 className="card-title">{name}</h2>
-                    <p>Years of experience: {years_of_experience}</p>
-                    <p>Number of recipes: {num_recipes}</p>
+                    <h2 className="card-title text-white">{name}</h2>
+                    <p className='text-amber-600'>Years of experience: {years_of_experience}</p>
+                    <p className='text-amber-600'>Number of recipes: {num_recipes}</p>
                     <div className="card-actions">
-                        <Link className='btn btn-warning' to={`/recipe/${_id}`}>recipe details</Link>
+                        <Link className='btn btn-warning text-white' to={`/recipe/${_id}`}>recipe details</Link>
                     </div>
                     <hr />
                     <div className=" justify-end">
-                        <div className="flex"><FaHeart className='mt-2 me-4'/> {like}</div>
+                        <div className="flex text-amber-600"><FaHeart className='mt-2 me-4'/> {like}</div>
                     </div>
                 </div>
             </div>

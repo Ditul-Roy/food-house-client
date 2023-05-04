@@ -45,6 +45,11 @@ const Login = () => {
         userWithGoogle()
         .then(result => {
             console.log(result);
+            Swal.fire(
+                'Good job!',
+                'wow ! succesfully log in !',
+                'success'
+            );
         })
         .catch(error => setError(error.message))
     }

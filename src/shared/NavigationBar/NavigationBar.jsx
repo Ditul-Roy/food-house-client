@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { UserContext } from '../../provider/AuthContextProvider';
 import { FaList, FaRegWindowClose } from 'react-icons/fa';
 
@@ -8,10 +8,8 @@ const NavigationBar = () => {
 
     const { user, logOut } = useContext(UserContext);
 
-    const navigate = useNavigate()
     const handleSignOut = () => {
         logOut();
-        <Navigate to="/chef"></Navigate>
     }
     return (
         <div>

@@ -6,13 +6,13 @@ const Blog = () => {
     return (
         <div>
             <ReactToPrint trigger={()=> <buttto className='btn btn-primary text-center my-4'>print</buttto>} content={()=>ref.current}/>
-            <div ref={ref} className='my-10 mx-6'>
+            <div ref={ref} className='my-10 mx-6 text-green-600'>
                 <h2 className='text-center text-3xl my-4'>Some quistion and answare</h2>
                 <div>
                     <h4 className='text-2xl text-center'>1. Tell us the differences between uncontrolled and controlled components ?</h4>
                     <div className="overflow-x-auto">
                         <p className='text-xl text-center'>differences between uncontrolled and controlled:</p>
-                        <table className="table table-zebra w-full">
+                        <table className=" w-full">
                             {/* head */}
                             <thead>
                                 <tr>
@@ -54,7 +54,7 @@ const Blog = () => {
                     <h4 className='text-center text-2xl my-4'>3. Tell us the difference between nodejs and express js ?</h4>
                     <p className='text-xl text-center'> defference between nodejs and express js</p>
                     <div className="overflow-x-auto">
-                        <table className="table table-zebra w-full">
+                        <table className=" w-full">
                             {/* head */}
                             <thead>
                                 <tr>

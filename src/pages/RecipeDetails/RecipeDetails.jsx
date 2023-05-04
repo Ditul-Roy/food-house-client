@@ -19,18 +19,18 @@ const RecipeDetails = () => {
     const myrecipes = recipes.filter(r=>r.recipe_id === recipe_id);
 
     return (
-        <div className='lg:mt-40'>
-            <div className="card bg-base-100 shadow-xl">
-                <figure><img src={image_url} alt="" className='h-96 w-96' /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">{name}</h2>
-                    <p>{details}</p>
-                    <p>Number of recipe: {num_recipes}</p>
-                    <p>Experience: {years_of_experience}year`s</p>
-                    <p><FaHeart></FaHeart> {like}</p>
+        <div className='lg:mt-40 grid lg:grid-cols-2 lg:ms-20'>
+            <div className=" bg-slate-800 shadow-xl w-5/4 h-fit">
+                <img src={image_url} alt="" className='w-full h-5/3 rounded' />
+                <div className="card-body text-center text-white">
+                    <h2 className="text-bold text-center text-2xl">{name}</h2>
+                    <p className='text-green-400'>{details}</p>
+                    <p >Number of recipe: {num_recipes}</p>
+                    <p >Experience: {years_of_experience}year`s</p>
+                    <p >Likes {like}</p>
                 </div>
             </div>
-            <div className='grid lg:grid-cols-3'>
+            <div className='ms-20'>
                 {
                     myrecipes.map((recipe, index)=> <RecipeCart 
                     key={index}

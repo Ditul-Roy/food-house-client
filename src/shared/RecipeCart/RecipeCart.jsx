@@ -12,7 +12,7 @@ const RecipeCart = ({ recipe }) => {
         setIsDisabled();
     }
     return (
-        <div className="card Lg:w-96 bg-base-100 shadow-xl m-4">
+        <div className="card lg:w-96 bg-slate-600 shadow-xl mb-8">
             <figure className="px-10 pt-10">
                 <LazyLoadImage 
                 src={image_url} 
@@ -21,15 +21,15 @@ const RecipeCart = ({ recipe }) => {
                 placeholderSrc={image_url} />
             </figure>
             <div className="card-body items-center text-center">
-                <h2 className="card-title text-2xl text-amber-600">{recipe_name}</h2>
-                <p className='text-green-600'>{cooking_method}</p>
-                <div>
+                <h2 className="card-title text-2xl text-white">{recipe_name}</h2>
+                <p className='text-green-400'>{cooking_method}</p>
+                <div className='text-white'>
                     <span className='text-xl'>Ingradients: </span>
                     {
-                        ingredients.map((ingredient, index) => <ul key={index}><li>{ingredient}</li></ul>)
+                        ingredients.map((ingredient, index) => <p className='inline' key={index}>{ingredient},</p>)
                     }
                 </div>
-                <div className='flex text-green-800 my-8'>
+                <div className='flex text-white my-8'>
                     <p className='me-10'><small>{rating.stars} stars rating</small></p>
                     <p><small>{rating.reviews} reviews</small></p>
                 </div>
