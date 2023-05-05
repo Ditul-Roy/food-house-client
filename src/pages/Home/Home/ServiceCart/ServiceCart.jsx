@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const ServiceCart = ({ service }) => {
     const { image_url, recipe_name, rating, cooking_method } = service;
@@ -12,7 +14,9 @@ const ServiceCart = ({ service }) => {
                 <h2 className="card-title text-2xl text-white">{recipe_name}</h2>
                 <p className='text-green-600'>{cooking_method}</p>
                 <div className='flex text-green-800 my-8'>
-                    <p className='me-10 text-white'><small>{rating.stars} stars rating</small></p>
+                    <div className='flex me-10'> <Rating style={{ maxWidth: 100 }} value={rating.stars} readOnly />
+                        <span className='text-white ms-4'>{rating.stars}</span>
+                    </div>
                     <p className='text-white'><small>{rating.reviews} reviews</small></p>
                 </div>
             </div>

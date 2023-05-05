@@ -27,7 +27,7 @@ const RecipeDetails = () => {
                     <p className='text-green-400'>{details}</p>
                     <p >Number of recipe: {num_recipes}</p>
                     <p >Experience: {years_of_experience}year`s</p>
-                    <p >Likes {like}</p>
+                    <p >Likes: <FaHeart className='inline' /> {like}</p>
                 </div>
             </div>
             <div className='ms-20'>
